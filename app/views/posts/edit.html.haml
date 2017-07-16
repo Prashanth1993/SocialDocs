@@ -1,0 +1,7 @@
+.posts-wrapper.row
+  .post
+    %p.file_avatar
+      =link_to (image_tag @post.file_avatar.url(:thumb),class:'img-responsive' ), @post.file_avatar.url if @post.file_avatar.exists?
+      = render 'form'
+    .text-center
+      =link_to "Cancel", post_path(@post) 

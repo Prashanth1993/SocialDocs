@@ -1,0 +1,10 @@
+.col-sm-3
+  .fixed
+    .well
+      .img-circle
+        = profile_avatar_select(current_user)
+      .user-name-and-follow
+        %h3.profile-user-name
+          .text-center
+            = link_to current_user.user_name, profile_path(current_user.user_name)
+= render 'post_dashboard', posts: @posts

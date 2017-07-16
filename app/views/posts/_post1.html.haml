@@ -1,0 +1,23 @@
+.posts-wrapper
+  .post
+    .post-head
+      .thumb-img
+      .user-name
+        = post.user.user_name
+      .time-ago
+        = time_ago_in_words post.created_at
+    .image.center-block
+      =link_to (image_tag @post.file_avatar.url(:thumb), class:'img-responsive'), @post.file_avatar.url if @post.file_avatar.exists?
+    .post-bottom
+      .caption
+        .user-name
+          = post.user.user_name
+        = post.caption
+      - if post.comments
+        = render post.comments, post: post
+    .comment-like-form.row
+      .like-button.col-sm-1
+        %span(class="glyphicon glyphicon-heart-empty")
+      .comment-form.col-sm-11
+        =  form_for([post, post.comments.build], remote: true) do |f|
+          = f.text_field :content, placeholder: 'Add a comment...'
